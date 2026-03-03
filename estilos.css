@@ -1,0 +1,140 @@
+/* ===== MODO OSCURO ELEGANTE MORADO ===== */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+/* ===== HEADER ===== */
+header {
+    background-color: #1e1e1e;
+    text-align: center;
+    padding: 30px 20px;
+    border-bottom: 2px solid #8e44ad; /* Línea morada elegante */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+header p {
+    color: #bdbdbd;
+}
+
+/* ===== NAV ===== */
+nav {
+    background-color: #181818;
+    padding: 15px 0;
+    border-bottom: 1px solid #8e44ad; /* Línea morada */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #bb86fc; /* Morado claro moderno */
+}
+
+/* ===== SECCIONES ===== */
+section {
+    background-color: #1c1c1c;
+    margin: 30px auto;
+    padding: 30px;
+    width: 85%;
+    max-width: 900px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+section h2 {
+    border-bottom: 2px solid #8e44ad; /* Línea morada elegante */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* ===== GALERÍA ===== */
+.galeria {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.galeria img {
+    width: 220px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.galeria img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(142, 68, 173, 0.6); /* Brillo morado */
+}
+
+/* ===== BOTONES ===== */
+button {
+    background-color: #8e44ad;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #6c3483;
+}
+
+/* ===== FORMULARIO ===== */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #8e44ad; /* Borde morado al escribir */
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #181818;
+    color: #9e9e9e;
+    margin-top: 40px;
+    border-top: 1px solid #8e44ad; /* Línea superior morada */
+}
+
+/* ===== OCULTO ===== */
+.oculto {
+    display: none;
+}
