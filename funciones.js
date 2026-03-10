@@ -1,46 +1,39 @@
-// Función para mostrar u ocultar información
-function verMas(id) {
-    const elemento = document.getElementById(id);
+function verMas(id){
 
-    console.log("Botón Ver más presionado");
+const elemento=document.getElementById(id);
 
-    if (elemento.style.display === "block") {
-        elemento.style.display = "none";
-    } else {
-        elemento.style.display = "block";
-    }
+if(elemento.style.display==="block"){
+elemento.style.display="none";
+}else{
+elemento.style.display="block";
 }
 
-// Validación del formulario
-document.getElementById("formulario").addEventListener("submit", function(event) {
+}
 
-    event.preventDefault();
+document.getElementById("formulario").addEventListener("submit",function(e){
 
-    const nombre = document.getElementById("nombre").value;
-    const celular = document.getElementById("celular").value;
-    const mensaje = document.getElementById("mensaje").value;
-    const resultado = document.getElementById("resultado");
+e.preventDefault();
 
-    console.log("Intentando enviar formulario...");
+const nombre=document.getElementById("nombre").value;
+const edad=document.getElementById("edad").value;
+const contacto=document.getElementById("contacto").value;
+const resultado=document.getElementById("resultado");
 
-    if (nombre === "") {
-        resultado.textContent = "El nombre es obligatorio";
-        console.log("Validación fallida: nombre vacío");
-        return;
-    }
+if(nombre===""){
+resultado.textContent="El nombre es obligatorio";
+return;
+}
 
-    if (!/^\d{10}$/.test(celular)) {
-        resultado.textContent = "El celular debe tener exactamente 10 dígitos";
-        console.log("Validación fallida: celular incorrecto");
-        return;
-    }
+if(edad<=12){
+resultado.textContent="La edad debe ser mayor a 12";
+return;
+}
 
-    if (mensaje.length < 10) {
-        resultado.textContent = "El mensaje debe tener mínimo 10 caracteres";
-        console.log("Validación fallida: mensaje corto");
-        return;
-    }
+if(!/^\d{10}$/.test(contacto)){
+resultado.textContent="El contacto debe tener 10 dígitos";
+return;
+}
 
-    resultado.textContent = "Formulario enviado correctamente";
-    console.log("Validación exitosa");
+resultado.textContent="Inscripción realizada correctamente";
+
 });

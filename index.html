@@ -1,79 +1,109 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Feria Digital – El Progreso</title>
-    <link rel="stylesheet" href="estilos.css">
+<meta charset="UTF-8">
+<title>Portal Rural - El Progreso</title>
+<link rel="stylesheet" href="estilos.css">
 </head>
+
 <body>
 
 <header>
-    <h1>Feria Digital – El Progreso</h1>
-    <p>Un espacio para mostrar nuestros cultivos, logros y el talento de nuestra vereda.</p>
+<h1>Portal Rural El Progreso</h1>
+<p>Producción agrícola, ganadera y talleres rurales</p>
 </header>
 
 <nav>
-    <ul>
-        <li><a href="#productos">Cultivos / Productos</a></li>
-        <li><a href="#galeria">Galería</a></li>
-        <li><a href="#logros">Logros Escolares</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-    </ul>
+<ul>
+<li><a href="#agricultura">Agricultura</a></li>
+<li><a href="#ganaderia">Ganadería</a></li>
+<li><a href="#inscripcion">Inscripción</a></li>
+</ul>
 </nav>
 
 <main>
 
-<section id="productos">
-    <h2>Cultivos / Productos</h2>
+<section id="agricultura">
 
-    <article>
-        <h3>Café Orgánico</h3>
-        <p>Cultivado de manera sostenible por familias campesinas.</p>
-        <button onclick="verMas('cafe')">Ver más</button>
-        <p id="cafe" class="oculto">
-            Nuestro café es 100% natural y se exporta a mercados locales.
-        </p>
-    </article>
+<h2>Agricultura</h2>
 
-    <article>
-        <h3>Plátano</h3>
-        <p>Producto fresco y de alta calidad.</p>
-        <button onclick="verMas('platano')">Ver más</button>
-        <p id="platano" class="oculto">
-            Cultivado sin químicos y distribuido en la región.
-        </p>
-    </article>
+<div class="contenedor-cards">
+
+<article class="card">
+<img src="https://verdecora.es/blog/wp-content/uploads/2023/02/cafe-organico.jpg">
+<h3>Café Orgánico</h3>
+<p>Producción sostenible cultivada por familias campesinas.</p>
+<button onclick="verMas('cafe')">Ver más</button>
+<p id="cafe" class="oculto">
+Café 100% natural cultivado en la vereda El Progreso.
+</p>
+</article>
+
+<article class="card">
+<img src="https://gastrocronicas.com/wp-content/uploads/2010/06/98e65-platanos_maduros.jpg">
+<h3>Plátano</h3>
+<p>Producto fresco distribuido en la región.</p>
+<button onclick="verMas('platano')">Ver más</button>
+<p id="platano" class="oculto">
+Cultivo sostenible sin químicos.
+</p>
+</article>
+
+</div>
+
 </section>
 
-<section id="galeria">
-    <h2>Galería de Fotos</h2>
-    <div class="galeria">
-        <img src="https://www.vidaorganica.com.co/wp-content/uploads/IMG_00101-rotated-e1690495534888.jpg" alt="Imagen 1">
-        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6" alt="Imagen 2">
-    </div>
+
+<section id="ganaderia">
+
+<h2>Ganadería</h2>
+
+<div class="contenedor-cards">
+
+<article class="card">
+<img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30">
+<h3>Producción Lechera</h3>
+<p>120 litros semanales de leche fresca.</p>
+</article>
+
+<article class="card">
+<img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a">
+<h3>Cría de ganado</h3>
+<p>Producción sostenible para la región.</p>
+</article>
+
+</div>
+
 </section>
 
-<section id="logros">
-    <h2>Logros Escolares</h2>
-    <p>Estudiantes ganadores en concursos de ciencia y tecnología rural.</p>
-</section>
 
-<section id="contacto">
-    <h2>Contacto</h2>
+<section id="inscripcion">
 
-    <div class="info-contacto">
-        <p><strong>Nombre:</strong> Joselito Quintero</p>
-        <p><strong>Celular:</strong> 3116314007</p>
-        <p><strong>Correo:</strong> juanjosevq2006@gmail.com</p>
-        <p><strong>Ubicación:</strong> Vereda El Progreso</p>
-        <p><strong>Rol:</strong> Organizador de la Feria Digital</p>
-    </div>
+<h2>Inscripción a Taller Rural</h2>
+
+<form id="formulario">
+
+<label>Nombre</label>
+<input type="text" id="nombre">
+
+<label>Edad</label>
+<input type="number" id="edad">
+
+<label>Número de contacto</label>
+<input type="text" id="contacto">
+
+<button type="submit">Inscribirse</button>
+
+<p id="resultado"></p>
+
+</form>
+
 </section>
 
 </main>
 
 <footer>
-    <p>© 2026 Feria Digital - Vereda El Progreso</p>
+<p>Portal Rural El Progreso - Comunidad campesina</p>
 </footer>
 
 <script src="funciones.js"></script>
