@@ -1,39 +1,31 @@
-function verMas(id){
+document.addEventListener("DOMContentLoaded", function(){
 
-const elemento=document.getElementById(id);
+const formulario = document.getElementById("formulario");
+const resultado = document.getElementById("resultado");
 
-if(elemento.style.display==="block"){
-elemento.style.display="none";
-}else{
-elemento.style.display="block";
-}
+if(formulario){
 
-}
-
-document.getElementById("formulario").addEventListener("submit",function(e){
+formulario.addEventListener("submit", function(e){
 
 e.preventDefault();
 
-const nombre=document.getElementById("nombre").value;
-const edad=document.getElementById("edad").value;
-const contacto=document.getElementById("contacto").value;
-const resultado=document.getElementById("resultado");
+const nombre = document.getElementById("nombre").value;
+const edad = document.getElementById("edad").value;
+const contacto = document.getElementById("contacto").value;
 
-if(nombre===""){
-resultado.textContent="El nombre es obligatorio";
+if(nombre === "" || edad === "" || contacto === ""){
+resultado.textContent = "Por favor complete todos los campos";
+resultado.style.color = "red";
 return;
 }
 
-if(edad<=12){
-resultado.textContent="La edad debe ser mayor a 12";
-return;
-}
+resultado.textContent = "Inscripción enviada correctamente";
+resultado.style.color = "lightgreen";
 
-if(!/^\d{10}$/.test(contacto)){
-resultado.textContent="El contacto debe tener 10 dígitos";
-return;
-}
+formulario.reset();
 
-resultado.textContent="Inscripción realizada correctamente";
+});
+
+}
 
 });
