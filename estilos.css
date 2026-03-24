@@ -1,132 +1,154 @@
-body{
-font-family: Arial, sans-serif;
-margin:0;
-background:#0d0d12;
-color:white;
-text-align:center;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #0d0d12;
+  color: white;
+  text-align: center;
 }
 
-header{
-background:#12121a;
-padding:30px;
-box-shadow:0 0 15px purple;
+header {
+  background: #12121a;
+  padding: 30px;
+  box-shadow: 0 0 15px purple;
 }
 
-nav{
-background:#0a0a0f;
-padding:15px;
+nav {
+  background: #0a0a0f;
+  padding: 15px;
 }
 
-nav ul{
-display:flex;
-justify-content:center;
-gap:40px;
-list-style:none;
-padding:0;
-margin:0;
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-nav a{
-color:white;
-text-decoration:none;
-font-weight:bold;
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-nav a:hover{
-color:#c77dff;
+nav a:hover {
+  color: #c77dff;
 }
 
-section{
-padding:60px 20px;
+section {
+  padding: 60px 20px;
 }
 
-.contenedor-cards{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:30px;
+.contenedor-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
 }
 
-.card{
-background:#15151d;
-width:260px;
-padding:20px;
-border-radius:12px;
-box-shadow:0 0 20px rgba(162,0,255,0.5);
-transition:0.3s;
+.card {
+  background: #15151d;
+  width: 260px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(162, 0, 255, 0.5);
+  transition: 0.3s;
 }
 
-.card:hover{
-transform:scale(1.05);
+.card:hover {
+  transform: scale(1.05);
 }
 
-.card img{
-width:100%;
-height:160px;
-object-fit:cover;
-border-radius:8px;
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-.boton{
-display:inline-block;
-margin-top:10px;
-padding:10px 20px;
-background:#7b2cbf;
-color:white;
-text-decoration:none;
-border-radius:8px;
+.boton {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #7b2cbf;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
 }
 
-.boton:hover{
-background:#c77dff;
+.boton:hover {
+  background: #c77dff;
 }
 
-footer{
-background:#0a0a0f;
-padding:20px;
-margin-top:40px;
-color:#aaa;
+footer {
+  background: #0a0a0f;
+  padding: 20px;
+  margin-top: 40px;
+  color: #aaa;
 }
 
-form{
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:10px;
+/* Formularios generales */
+form {
+  background: #15151d;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(162, 0, 255, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-input{
-padding:10px;
-width:250px;
-border-radius:5px;
-border:none;
+form label {
+  font-weight: bold;
+  color: #c77dff;
 }
 
-button{
-padding:10px 20px;
-background:#7b2cbf;
-border:none;
-border-radius:5px;
-color:white;
-cursor:pointer;
+input {
+  padding: 10px;
+  width: 250px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background: #0d0d12;
+  color: white;
+  box-shadow: inset 0 0 8px rgba(162, 0, 255, 0.3);
 }
 
-button:hover{
-background:#c77dff;
+input::placeholder {
+  color: #aaa;
 }
 
-.galeria{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-margin:30px;
+button {
+  padding: 10px 20px;
+  background: #7b2cbf;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.galeria img{
-width:280px;
-height:180px;
-object-fit:cover;
-border-radius:10px;
-box-shadow:0 0 10px purple;
+button:hover {
+  background: #c77dff;
+}
+
+/* Mensajes dinámicos */
+#resultado,
+#loginMessage,
+#verificacionMessage {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Caja de verificación */
+#verificacion {
+  margin-top: 20px;
+  background: #12121a;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(162, 0, 255, 0.4);
 }

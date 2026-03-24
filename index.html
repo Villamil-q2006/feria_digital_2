@@ -4,122 +4,90 @@
 <head>
 <meta charset="UTF-8">
 <title>Portal Rural El Progreso</title>
-
 <link rel="stylesheet" href="estilos.css">
-
 </head>
 
 <body>
 
 <header>
-<h1>Portal Rural El Progreso</h1>
-<p>Producción agrícola, ganadera y talleres rurales</p>
+  <h1>Portal Rural El Progreso</h1>
+  <p>Producción agrícola, ganadera y talleres rurales</p>
 </header>
 
-<nav>
-<ul>
-<li><a href="#agricultura">Agricultura</a></li>
-<li><a href="#ganaderia">Ganadería</a></li>
-<li><a href="#inscripcion">Inscripción</a></li>
-</ul>
-</nav>
+<section id="login">
+  <h2>Inicio de Sesión / Registro</h2>
+  <form id="loginForm">
+    <label>Correo electrónico</label>
+    <input type="email" id="email" required>
 
-<main>
+    <label>Contraseña</label>
+    <input type="password" id="password" required>
 
-<section id="agricultura">
-
-<h2>Agricultura</h2>
-
-<div class="contenedor-cards">
-
-<article class="card">
-<img src="https://verdecora.es/blog/wp-content/uploads/2023/02/cafe-organico.jpg">
-<h3>Café Orgánico</h3>
-<p>Producción sostenible cultivada por familias campesinas.</p>
-<a href="productos/cafe.html" class="boton">Ver más</a>
-</article>
-
-<article class="card">
-<img src="https://gastrocronicas.com/wp-content/uploads/2010/06/98e65-platanos_maduros.jpg">
-<h3>Plátano</h3>
-<p>Producto fresco distribuido en la región.</p>
-<a href="productos/platano.html" class="boton">Ver más</a>
-</article>
-
-<article class="card">
-<img src="https://fundacion-antama.org/wp-content/uploads/2020/07/202008-Ma%C3%ADz.jpg">
-<h3>Maíz</h3>
-<p>Grano fundamental en la alimentación rural.</p>
-<a href="productos/maiz.html" class="boton">Ver más</a>
-</article>
-
-<article class="card">
-<img src="https://mejorconsalud.as.com/wp-content/uploads/2021/04/harina-yuca-saludable.jpg">
-<h3>Yuca</h3>
-<p>Raíz muy consumida en la región.</p>
-<a href="productos/yuca.html" class="boton">Ver más</a>
-</article>
-
-</div>
-
+    <button type="submit">Ingresar</button>
+    <p id="loginMessage"></p>
+  </form>
 </section>
 
-
-<section id="ganaderia">
-
-<h2>Ganadería</h2>
-
-<div class="contenedor-cards">
-
-<article class="card">
-<img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30">
-<h3>Producción Lechera</h3>
-<p>Leche fresca producida en la comunidad.</p>
-<a href="productos/leche.html" class="boton">Ver más</a>
-</article>
-
-<article class="card">
-<img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a">
-<h3>Cría de Ganado</h3>
-<p>Actividad ganadera sostenible.</p>
-<a href="productos/ganado.html" class="boton">Ver más</a>
-</article>
-
-</div>
-
-</section>
-
-
-<section id="inscripcion">
-
-<h2>Inscripción a Taller Rural</h2>
-
-<form id="formulario">
-
-<label>Nombre</label>
-<input type="text" id="nombre">
-
-<label>Edad</label>
-<input type="number" id="edad">
-
-<label>Contacto</label>
-<input type="text" id="contacto">
-
-<button type="submit">Inscribirse</button>
-
-<p id="resultado"></p>
-
-</form>
-
-</section>
-
+<main id="contenido" style="display:none;">
+  <!-- Aquí va tu contenido principal -->
 </main>
 
 <footer>
-<p>Portal Rural El Progreso - Comunidad campesina</p>
+  <p>Portal Rural El Progreso - Comunidad campesina</p>
 </footer>
 
-<script src="funciones.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyAwcDaYFEdMX9QpJMoKA1pBGJog3_uM6e4",
+    authDomain: "correos-de-verificacion.firebaseapp.com",
+    projectId: "correos-de-verificacion",
+    storageBucket: "correos-de-verificacion.firebasestorage.app",
+    messagingSenderId: "395918603660",
+    appId: "1:395918603660:web:7183abd472984f060012a9",
+    measurementId: "G-QQ6KTDYPDF"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const loginForm = document.getElementById("loginForm");
+  const loginMessage = document.getElementById("loginMessage");
+  const contenido = document.getElementById("contenido");
+
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+      // Registrar usuario
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Enviar correo de verificación
+      await sendEmailVerification(user);
+      loginMessage.textContent = "Se envió un correo de verificación. Revisa tu bandeja.";
+
+    } catch (error) {
+      // Si ya existe, intentar iniciar sesión
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        if (user.emailVerified) {
+          loginMessage.textContent = "Acceso concedido.";
+          contenido.style.display = "block";
+        } else {
+          loginMessage.textContent = "Debes verificar tu correo antes de entrar.";
+        }
+      } catch (err) {
+        loginMessage.textContent = "Error: " + err.message;
+      }
+    }
+  });
+</script>
 </body>
 </html>
