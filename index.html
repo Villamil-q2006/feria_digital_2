@@ -1,93 +1,122 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-<meta charset="UTF-8">
-<title>Portal Rural El Progreso</title>
-<link rel="stylesheet" href="estilos.css">
+    <meta charset="UTF-8">
+    <title>Portal Rural El Progreso</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
-
 <body>
 
 <header>
-  <h1>Portal Rural El Progreso</h1>
-  <p>Producción agrícola, ganadera y talleres rurales</p>
+    <h1>Portal Rural El Progreso</h1>
+    <p>Producción agrícola, ganadera y talleres rurales</p>
 </header>
 
 <section id="login">
-  <h2>Inicio de Sesión / Registro</h2>
-  <form id="loginForm">
-    <label>Correo electrónico</label>
-    <input type="email" id="email" required>
+    <h2>Inicio de Sesión / Registro</h2>
+    <form id="loginForm">
+        <label>Correo electrónico</label>
+        <input type="email" id="email" required>
 
-    <label>Contraseña</label>
-    <input type="password" id="password" required>
+        <label>Contraseña</label>
+        <input type="password" id="password" required>
 
-    <button type="submit">Ingresar</button>
-    <p id="loginMessage"></p>
-  </form>
+        <button type="submit">Ingresar</button>
+        <p id="loginMessage"></p>
+    </form>
 </section>
 
-<main id="contenido" style="display:none;">
-  <!-- Aquí va tu contenido principal -->
+<main id="contenido" style="display:none; text-align: center; padding: 20px;">
+    <h2 style="color: #c77dff;">¡Bienvenido al Portal! Selecciona una sección:</h2>
+    
+    <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px;">
+        <a href="productos/cafe.html" class="boton">Café</a>
+        <a href="productos/ganado.html" class="boton">Ganado</a>
+        <a href="productos/leche.html" class="boton">Leche</a>
+        <a href="productos/maiz.html" class="boton">Maíz</a>
+        <a href="productos/platano.html" class="boton">Plátano</a>
+        <a href="productos/yuca.html" class="boton">Yuca</a>
+    </div>
+
+    <br><br>
+    <button id="btnSalir" style="background: #ff4d4d; margin-top: 40px;">Cerrar Sesión</button>
+
+    <a href="https://wa.me/573116314007?text=¡Hola!%20Me%20interesan%20los%20productos%20de%20tu%20feria" class="whatsapp-flotante" target="_blank">
+        💬 WhatsApp
+    </a>
 </main>
 
 <footer>
-  <p>Portal Rural El Progreso - Comunidad campesina</p>
+    <p>Portal Rural El Progreso - Comunidad campesina</p>
 </footer>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyAwcDaYFEdMX9QpJMoKA1pBGJog3_uM6e4",
-    authDomain: "correos-de-verificacion.firebaseapp.com",
-    projectId: "correos-de-verificacion",
-    storageBucket: "correos-de-verificacion.firebasestorage.app",
-    messagingSenderId: "395918603660",
-    appId: "1:395918603660:web:7183abd472984f060012a9",
-    measurementId: "G-QQ6KTDYPDF"
-  };
+    const firebaseConfig = {
+        apiKey: "AIzaSyAwcDaYFEdMX9QpJMoKA1pBGJog3_uM6e4",
+        authDomain: "correos-de-verificacion.firebaseapp.com",
+        projectId: "correos-de-verificacion",
+        storageBucket: "correos-de-verificacion.firebasestorage.app",
+        messagingSenderId: "395918603660",
+        appId: "1:395918603660:web:7183abd472984f060012a9"
+    };
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-  const loginForm = document.getElementById("loginForm");
-  const loginMessage = document.getElementById("loginMessage");
-  const contenido = document.getElementById("contenido");
+    const loginForm = document.getElementById("loginForm");
+    const loginMessage = document.getElementById("loginMessage");
+    const loginSection = document.getElementById("login");
+    const contenido = document.getElementById("contenido");
+    const btnSalir = document.getElementById("btnSalir");
 
-  loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    try {
-      // Registrar usuario
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      // Enviar correo de verificación
-      await sendEmailVerification(user);
-      loginMessage.textContent = "Se envió un correo de verificación. Revisa tu bandeja.";
-
-    } catch (error) {
-      // Si ya existe, intentar iniciar sesión
-      try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-
-        if (user.emailVerified) {
-          loginMessage.textContent = "Acceso concedido.";
-          contenido.style.display = "block";
+    onAuthStateChanged(auth, (user) => {
+        if (user && user.emailVerified) {
+            loginSection.style.display = "none";
+            contenido.style.display = "block";
         } else {
-          loginMessage.textContent = "Debes verificar tu correo antes de entrar.";
+            loginSection.style.display = "block";
+            contenido.style.display = "none";
         }
-      } catch (err) {
-        loginMessage.textContent = "Error: " + err.message;
-      }
-    }
-  });
+    });
+
+    btnSalir.addEventListener("click", () => {
+        signOut(auth).then(() => {
+            window.location.reload();
+        });
+    });
+
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            if (!userCredential.user.emailVerified) {
+                loginMessage.textContent = "Verifica tu correo antes de entrar.";
+                loginMessage.style.color = "orange";
+                await sendEmailVerification(userCredential.user);
+            }
+        } catch (error) {
+            if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found') {
+                try {
+                    const newUser = await createUserWithEmailAndPassword(auth, email, password);
+                    await sendEmailVerification(newUser.user);
+                    loginMessage.textContent = "Cuenta creada. ¡Revisa tu correo para verificar!";
+                    loginMessage.style.color = "lightgreen";
+                } catch (regError) {
+                    loginMessage.textContent = "Error: " + regError.message;
+                    loginMessage.style.color = "red";
+                }
+            } else {
+                loginMessage.textContent = "Error: " + error.message;
+                loginMessage.style.color = "red";
+            }
+        }
+    });
 </script>
 </body>
 </html>

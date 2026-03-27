@@ -2,11 +2,11 @@
 
 ## Descripción del proyecto
 
-Este proyecto consiste en el desarrollo de una página web informativa sobre las actividades agrícolas y ganaderas de la comunidad rural **El Progreso**.
+Este proyecto consiste en el desarrollo de una plataforma web interactiva e informativa sobre las actividades agrícolas y ganaderas de la comunidad rural **El Progreso**.
 
-La página permite mostrar productos del sector agrícola y ganadero, además de ofrecer información adicional sobre cada producto mediante páginas individuales.
+La plataforma funciona como un portal de acceso privado que permite a los usuarios registrados visualizar productos del sector agrícola y ganadero, además de ofrecer información detallada sobre cada producto mediante páginas individuales.
 
-El sitio también incluye un formulario de inscripción para participar en talleres rurales.
+El sitio no solo es informativo, sino que incluye un sistema de seguridad de usuarios, contacto directo con los vendedores mediante WhatsApp y un formulario de inscripción para participar en talleres rurales.
 
 ---
 
@@ -14,9 +14,10 @@ El sitio también incluye un formulario de inscripción para participar en talle
 
 Para el desarrollo del proyecto se utilizaron las siguientes tecnologías:
 
-* **HTML** → para la estructura de la página web
-* **CSS** → para el diseño visual y estilos del sitio
-* **JavaScript** → para validar el formulario de inscripción
+* **HTML5** → Estructura de la página web y semántica.
+* **CSS3** → Diseño visual, galerías responsivas y estilos modernos (modo oscuro/neón).
+* **JavaScript** → Lógica de validación de formularios y manejo del estado de sesión.
+* **Firebase Authentication** → Backend para la creación de usuarios, inicio de sesión, protección de rutas y envío de correos de verificación.
 
 El proyecto fue desarrollado utilizando **Visual Studio Code** como editor de código.
 
@@ -26,77 +27,58 @@ El proyecto fue desarrollado utilizando **Visual Studio Code** como editor de c�
 
 El proyecto está organizado de la siguiente manera:
 
-```
-feria_digital_2
-│
-├── index.html
-├── estilos.css
-├── funciones.js
-│
-└── productos
-    ├── cafe.html
-    ├── platano.html
-    ├── maiz.html
-    ├── yuca.html
-    ├── leche.html
-    └── ganado.html
-```
-
-* **index.html:** página principal del sitio web
-* **estilos.css:** archivo que contiene los estilos visuales del sitio
-* **funciones.js:** archivo JavaScript que controla la validación del formulario
-* **productos:** carpeta que contiene las páginas individuales de cada producto
+    feria_digital_2
+    │
+    ├── index.html       # Portal de acceso (Login/Registro) y menú principal
+    ├── estilos.css      # Hoja de estilos global y diseño de galerías
+    ├── funciones.js     # Validaciones de formularios (edad, contacto)
+    ├── README.md        # Documentación del proyecto
+    │
+    └── productos/       # Páginas individuales de exposición
+        ├── cafe.html
+        ├── platano.html
+        ├── maiz.html
+        ├── yuca.html
+        ├── leche.html
+        └── ganado.html
 
 ---
 
-## Funcionalidades del sitio
+## Funcionalidades principales del sitio
 
-El sitio web incluye las siguientes funcionalidades:
+El sitio web pasó de ser una página estática a una plataforma dinámica con las siguientes funcionalidades:
 
-* Visualización de productos agrícolas y ganaderos.
-* Navegación entre secciones mediante un menú.
-* Páginas individuales con más información sobre cada producto.
-* Galería de imágenes en cada producto.
-* Formulario de inscripción a talleres rurales.
-* Validación de formulario con JavaScript.
+* **Sistema de Autenticación:** Registro e inicio de sesión seguro con Firebase.
+* **Verificación de correos:** El sistema exige y envía un enlace de verificación al correo registrado para garantizar que sea real antes de conceder el acceso.
+* **Rutas protegidas:** Memoria de sesión que muestra el contenido de la feria solo a usuarios logueados y verificados.
+* **Galerías de productos:** Visualización organizada y responsiva de productos agrícolas y ganaderos usando object-fit para evitar deformaciones.
+* **Contacto en tiempo real:** Botón flotante integrado con la API de WhatsApp para atención directa al cliente.
+* **Formulario de inscripción:** Sistema para talleres rurales con validación de mayoría de edad y formato de teléfono mediante JavaScript.
 
 ---
 
 ## Explicación del funcionamiento
 
-### Ejecución correcta del proyecto
+### Ejecución y Flujo de Usuario
+El proyecto se ejecuta iniciando un servidor local en el archivo index.html. Si el usuario no tiene cuenta, debe registrarse con un correo válido y una contraseña. El sistema envía un enlace de verificación a esa bandeja de entrada. Una vez verificado, la plataforma desbloquea el menú principal, permitiendo navegar hacia las páginas de cada producto sin pedir la clave en cada recarga gracias a la persistencia de sesión.
 
-Ejecutar correctamente un proyecto significa que todos los archivos están organizados correctamente, los enlaces funcionan, los estilos se aplican y las funciones del sistema operan sin errores.
-
-En este caso, la página se abre correctamente desde el archivo **index.html**, mostrando los productos, estilos visuales y permitiendo navegar hacia las páginas de cada producto.
-
----
-
-### Adaptación de código existente
-
-Adaptar código existente implica modificar o mejorar código previamente creado para ajustarlo a nuevas necesidades.
-
-En este proyecto se adaptó el código inicial agregando más productos, organizando los archivos en carpetas y mejorando la estructura del sitio.
-
----
+### Adaptación y Escalabilidad
+Se adaptó el código inicial estático para soportar una arquitectura más compleja. Las imágenes fueron controladas mediante clases CSS, los scripts de validación se separaron para evitar conflictos con Firebase, y se agregó la funcionalidad de "Cerrar sesión" para gestionar la privacidad del usuario.
 
 ### Importancia de las pruebas
-
-Las pruebas son necesarias para verificar que el sitio funcione correctamente.
-
-En este proyecto se realizaron pruebas para comprobar:
-
-* Que los enlaces entre páginas funcionaran correctamente.
-* Que el formulario validara los datos ingresados.
-* Que los estilos CSS se aplicaran correctamente.
+Durante el desarrollo se realizaron pruebas exhaustivas para comprobar:
+* El correcto envío de correos de verificación hacia plataformas reales (ej. Gmail).
+* La persistencia de la sesión al navegar entre la raíz y la subcarpeta /productos.
+* El funcionamiento del botón flotante de WhatsApp.
+* La adaptación del diseño CSS para que las imágenes mantuvieran su proporción sin romper el contenedor.
 
 ---
 
-### Impacto en la calidad del software
+## Impacto en la calidad del software
 
-La correcta organización del código, la realización de pruebas y la adaptación del proyecto permiten mejorar la calidad del software.
+La correcta organización del código (separando la base de datos, los estilos y la estructura), la realización de pruebas de flujo de usuario y la implementación de seguridad con Firebase permiten mejorar enormemente la calidad del software.
 
-Esto facilita el mantenimiento del sistema, evita errores y permite que la página funcione de manera estable y organizada.
+Esto facilita el mantenimiento del sistema, previene accesos no autorizados y ofrece una experiencia de usuario (UX) mucho más fluida, moderna y profesional.
 
 ---
 
