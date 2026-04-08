@@ -91,5 +91,6 @@ Este proyecto fue desarrollado por:
 * **Juan Villamil**
 * **Jeronimo Roman**
 * **David Calderon**
+* **Juan Esteban Rendón**
 
 Como parte de una actividad académica de desarrollo web.
