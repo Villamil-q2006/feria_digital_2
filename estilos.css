@@ -1,5 +1,5 @@
 /* =========================================
-   ESTILOS GENERALES
+   ESTILOS GENERALES (ORIGINALES)
    ========================================= */
 body {
   font-family: Arial, sans-serif;
@@ -45,7 +45,7 @@ section {
 }
 
 /* =========================================
-   GALERÍA DE PRODUCTOS (Para ganado, café, etc.)
+   GALERÍA DE PRODUCTOS
    ========================================= */
 .galeria {
   display: flex;
@@ -143,7 +143,7 @@ footer {
 }
 
 /* =========================================
-   BOTÓN FLOTANTE WHATSAPP
+   BOTONES FLOTANTES (WhatsApp e IA)
    ========================================= */
 .whatsapp-flotante {
   position: fixed; 
@@ -165,4 +165,83 @@ footer {
   transform: scale(1.1); 
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.8);
   background-color: #20b858; 
+}
+
+/* NUEVO: Botón IA Izquierda */
+.ia-flotante {
+    position: fixed; 
+    bottom: 30px; 
+    left: 30px; 
+    background-color: #7b2cbf; 
+    color: white !important; 
+    padding: 12px 25px;
+    border-radius: 50px; 
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(123, 44, 191, 0.4); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000; 
+}
+
+.ia-flotante:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 6px 20px rgba(199, 125, 255, 0.8);
+    background-color: #c77dff; 
+}
+
+/* =========================================
+   ESTILOS VENTANA DE CHAT IA
+   ========================================= */
+.contenedor-chat {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #15151d;
+    border-radius: 15px;
+    border: 1px solid #7b2cbf;
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    overflow: hidden;
+    text-align: left;
+}
+
+.chat-header-ia {
+    background: #12121a;
+    padding: 15px;
+    border-bottom: 2px solid #7b2cbf;
+    color: #c77dff;
+    font-weight: bold;
+}
+
+.chat-mensajes {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.burbuja-ia {
+    background: #252533;
+    padding: 10px 15px;
+    border-radius: 15px 15px 15px 0;
+    margin-bottom: 15px;
+    max-width: 85%;
+    display: inline-block;
+    color: #efefef;
+    line-height: 1.4;
+}
+
+.chat-input-area {
+    padding: 20px;
+    background: #12121a;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #252533;
+}
+
+/* Corrección para que el input no use el ancho de 250px del login */
+.chat-input-area input {
+    flex: 1;
+    width: auto; 
+    margin: 0;
 }

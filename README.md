@@ -8,6 +8,7 @@ La plataforma funciona como un portal de acceso privado que permite a los usuari
 
 El sitio no solo es informativo, sino que incluye un sistema de seguridad de usuarios, contacto directo con los vendedores mediante WhatsApp y un formulario de inscripción para participar en talleres rurales.
 
+Se le incluyó una IA funcional.
 ---
 
 ## Tecnologías utilizadas
@@ -32,6 +33,7 @@ El proyecto está organizado de la siguiente manera:
     ├── index.html       # Portal de acceso (Login/Registro) y menú principal
     ├── estilos.css      # Hoja de estilos global y diseño de galerías
     ├── funciones.js     # Validaciones de formularios (edad, contacto)
+    ├── chat-ia.html     # Chat con IA funcional
     ├── README.md        # Documentación del proyecto
     │
     └── productos/       # Páginas individuales de exposición
